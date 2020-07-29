@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
-use App\Post;
 use Faker\Factory as Faker;
 
 class UsersTableSeeder extends Seeder
@@ -32,14 +31,15 @@ class UsersTableSeeder extends Seeder
         ]);
 
 
-        // And now let's generate a few posts belongs to this normal user:
+        // And now let's generate a few randoms users:
         $faker = Faker::create();
+		$password = Hash::make('secret');
 
-        for ($i = 0; $i < 4; $i++) {
-            Post::create([
-                'title' => $faker->name,
-                'body' => $faker->text,
-                'user_id' => $normal_user->id,
+        for ($i = 0; $i < 5; $i++) {
+            User::create([
+                'name'     => $faker->name,
+                'email'    => $faker->email,
+                'password' => $password,
             ]);
         }
     }
