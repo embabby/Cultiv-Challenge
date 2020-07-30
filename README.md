@@ -1,4 +1,4 @@
-# Cultiv PHP API Challenge Soultion 
+# Cultiv PHP API Challenge Solution 
 
 
 
