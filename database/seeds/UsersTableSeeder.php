@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
         $admin = User::create([
             'name' => 'Administrator',
             'email' => 'admin@test.com',
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('12345678'),
             'role' => 'admin',
         ]);
 
@@ -27,15 +27,15 @@ class UsersTableSeeder extends Seeder
         $normal_user = User::create([
             'name' => 'NormalUser',
             'email' => 'user@test.com',
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('12345678'),
         ]);
 
 
-        // And now let's generate a few randoms users:
+        // And now let's generate a few random users:
         $faker = Faker::create();
 		$password = Hash::make('secret');
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             User::create([
                 'name'     => $faker->name,
                 'email'    => $faker->email,

@@ -20,7 +20,7 @@ class PostsTableSeeder extends Seeder
         $faker = Faker::create();
 
         \App\User::where('role','user')->get()->each(function ($user) use ($faker) {
-            foreach (range(1, 5) as $i) {
+            foreach (range(1, 4) as $i) {
                 \App\Post::create([
                     'user_id' => $user->id,
                     'title'   => $faker->sentence,

@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Str;
+
 
 class User extends Authenticatable
 {
@@ -17,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name', 'email', 'password', 'role', 'api_token','role',
     ];
 
     /**
@@ -26,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email_verified_at', 'created_at', 'updated_at', 'api_token',
     ];
 
     /**
@@ -37,4 +39,37 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        // return $this->hasMany(Post::class);
+        return $this->belongsToMany(Post::class);
+    }
+
+
+
+
+
+    // public function generateToken()
+    // {
+    //     $this->api_token = Str::random(60);
+
+    //     $this->save();
+
+    //     return $this->api_token;
+    // }
+
+
+
+
+
+
+    public function getPosts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
